@@ -1,0 +1,295 @@
+$primary-color: rgb(87, 87, 224);
+$secondary-color: rgb(128, 0, 128);
+$border-color: rgb(12, 4, 26);
+$placeholder-color: rgba(17, 7, 34, 0.5);
+$purple-color: rgb(167, 18, 167);
+$register-color: rgba(0, 0, 0, 0.212);
+$mobilebg-color: rgb(111, 111, 192);
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin notebook {
+  @media (max-width: 1030px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 380px) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-image: linear-gradient(
+    to right,
+    $primary-color 20%,
+    $secondary-color
+  );
+  width: 100%;
+  height: 100%;
+  @include flex-center;
+  position: relative;
+  @include mobile {
+    background-image: linear-gradient($mobilebg-color, $mobilebg-color);
+  }
+}
+
+.container {
+  background-image: linear-gradient(
+    to right,
+    $secondary-color 5%,
+    $primary-color
+  );
+  width: 80%;
+  height: 80vh;
+  margin-top: 5rem;
+  display: flex;
+  box-shadow: 8px 8px 10px $register-color;
+  @include mobile {
+    width: 90%;
+    height: 80%;
+    margin-top: 3.5rem;
+    display: block;
+  }
+  .form-image {
+    @include flex-center;
+    width: 40%;
+    padding: 1rem;
+    @include mobile {
+      width: 0;
+    }
+    img {
+      width: 80%;
+      @include mobile {
+        position: absolute;
+        width: 20%;
+        left: 4.5rem;
+        top: 4rem;
+      }
+    }
+  }
+  #form-content {
+    margin-top: 1.5rem;
+    width: 60%;
+    height: 90%;
+    @include flex-center;
+    flex-direction: column;
+    padding: 3rem;
+    @include notebook {
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    @include mobile {
+      width: 100%;
+    }
+    .form-header {
+      @include flex-center;
+      margin-bottom: 1rem;
+      @include notebook {
+        margin-bottom: 0;
+      }
+      h1 {
+        @include tablet {
+          font-size: medium;
+        }
+      }
+    }
+    .line-input-group,
+    .form-input-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1rem 0;
+      width: 100%;
+      @include notebook {
+        padding: 0.5rem 0;
+      }
+    }
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.1rem;
+      position: relative;
+      line-height: 1.3rem;
+      width: 47%;
+      @include notebook {
+        line-height: 0.6rem;
+        margin-bottom: 0.8rem;
+      }
+      input {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1.8px solid $border-color;
+        border-radius: 3px;
+        outline: none;
+        font-size: 1rem;
+        color: $placeholder-color;
+        @include notebook {
+          font-size: 0.8rem;
+        }
+        &::placeholder {
+          color: $placeholder-color;
+        }
+      }
+      &:hover {
+        border-bottom: 2.3px solid $border-color;
+      }
+
+      label {
+        font-size: 1.2rem;
+        color: $border-color;
+        font-weight: 500;
+        @include notebook {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .span-required {
+      position: absolute;
+      right: 0;
+      top: -0.5rem;
+      display: none;
+      @include mobile {
+        top: -1.2rem;
+      }
+    }
+    .gender-title {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      @include notebook {
+        margin-bottom: 0.5rem;
+      }
+      h6 {
+        font-size: 1.5rem;
+        color: $border-color;
+        font-weight: 500;
+        @include notebook {
+          font-size: 1rem;
+        }
+      }
+    }
+    .names {
+      text-transform: capitalize;
+    }
+    #eye,
+    #eye-slash {
+      position: absolute;
+      right: 0;
+      top: 1.3rem;
+      @include notebook {
+        top: 0.7rem;
+      }
+    }
+    .gender-group {
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0 35px 0;
+      @include notebook {
+        margin: 0 0 35px 0;
+      }
+    }
+    .gender-input {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      font-size: 1rem;
+      @include notebook {
+        font-size: 0.8rem;
+      }
+      input {
+        accent-color: $purple-color;
+        margin-right: 0.5rem;
+      }
+    }
+    .register-button {
+      @include flex-center;
+      #register {
+        padding: 0.7rem 1.7rem;
+        background-color: transparent;
+        border-radius: 10px;
+        border: 0.002px solid $border-color;
+        cursor: pointer;
+        outline: none;
+        color: $border-color;
+        font-weight: 600;
+        font-size: 1.2rem;
+        @include notebook {
+          font-size: 0.8rem;
+          padding: 0.5rem 1.5rem;
+        }
+        @include tablet {
+          font-size: 0.6rem;
+          padding: 0.3rem 1.1rem;
+        }
+        &:hover {
+          box-shadow: inset 3px 3px 5px $register-color;
+        }
+      }
+    }
+
+    .popup {
+      width: 20rem;
+      height: 10rem;
+      background-color: $secondary-color;
+      border-radius: 10px;
+      z-index: 1;
+      position: absolute;
+      top: 10;
+      left: 57%;
+      border: 0.002rem solid $border-color;
+      @include flex-center;
+      flex-flow: column;
+      gap: 0.5rem;
+      transform: scale(0.1);
+      visibility: hidden;
+      transition: transform 0.4s, top 0.4s;
+      @include notebook {
+        left: 50%;
+      }
+      @include tablet {
+        width: 15rem;
+      }
+      @include mobile {
+        left: 18%;
+      }
+      img {
+        width: 4rem;
+        height: 4rem;
+        rotate: -45deg;
+      }
+      .ok {
+        background-color: transparent;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 0.3rem 0.5rem;
+        border: 1px solid $placeholder-color;
+        outline: none;
+      }
+    }
+    .popup.active {
+      transform: scale(1);
+      visibility: visible;
+    }
+  }
+}
